@@ -1,0 +1,35 @@
+runtime: php
+env: flex
+
+runtime_config:
+  operating_system: "ubuntu18"
+  runtime_version: "8.1"
+  document_root: public
+  enable_stackdriver_integration: true
+
+# Ensure we skip ".env", which is only for local development
+skip_files:
+  - .env
+
+env_variables:
+  # Put production environment variables here.
+  LOG_CHANNEL: stackdriver
+  APP_LOG: errorlog
+  APP_KEY: base64:nSZi3ixXaWdbWEPehGS8YvfvPXZbu/6L72KTkdD/P+0=
+  APP_DEBUG: true
+  STORAGE_DIR: /tmp
+  CACHE_DRIVER: database
+  SESSION_DRIVER: database
+  DB_CONNECTION: mysql
+  DB_HOST: 127.0.0.1
+  DB_PORT: 3306
+  DB_DATABASE: appengine-laravel
+  DB_USERNAME: root
+  DB_PASSWORD: appengine-laravel
+  DB_SOCKET: "/cloudsql/sacred-highway-400710:asia-southeast2:appengine-laravel"
+
+build_env_variables:
+  GOOGLE_COMPOSER_VERSION: 2.2.1
+
+beta_settings:
+  cloud_sql_instances: "sacred-highway-400710:asia-southeast2:appengine-laravel"
